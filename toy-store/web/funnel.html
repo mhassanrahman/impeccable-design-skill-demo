@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Funnel · Toy Store Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/core.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Website conversion funnel</h1>
+    <p class="subtitle">How far sessions get, from the landing page to a placed order, plus the results of the landing page and billing page A/B tests.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <section class="card span-7">
+        <h2>Conversion funnel</h2>
+        <p class="desc" id="funnel-desc">Sessions reaching each step · % of all sessions · click-through from the previous step</p>
+        <div class="funnel" id="funnel"></div>
+      </section>
+      <section class="card span-5">
+        <h2>Landing page performance</h2>
+        <p class="desc">Click a row to filter this page's funnel by landing page</p>
+        <div id="t-land"></div>
+      </section>
+      <section class="card span-6">
+        <h2>Bounce rate by landing page</h2>
+        <p class="desc">Sessions that left after one page</p>
+        <div class="chart-box"><canvas id="c-bounce"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Conversion rate by landing page</h2>
+        <p class="desc">Orders ÷ sessions</p>
+        <div class="chart-box"><canvas id="c-lcvr"></canvas></div>
+      </section>
+      <section class="card span-12">
+        <h2>Landing page traffic by month</h2>
+        <p class="desc">Shows when each landing page test was live</p>
+        <div class="chart-box"><canvas id="c-ltrend"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Billing page A/B test</h2>
+        <p class="desc">Sessions that reached a billing page, and how many of them ordered. For a fair test, set the Date slicer to months when both pages were live (Sep–Dec 2012).</p>
+        <div id="t-bill"></div>
+      </section>
+      <section class="card span-6">
+        <h2>Product page click-through</h2>
+        <p class="desc">Sessions that viewed a product page, and how many reached the cart or ordered</p>
+        <div id="t-pp"></div>
+      </section>
+    </div>
+  </main>
+  <script src="js/funnel.js"></script>
+</body>
+</html>

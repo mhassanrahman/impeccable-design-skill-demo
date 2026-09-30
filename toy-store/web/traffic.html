@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traffic · Toy Store Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/core.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Traffic and marketing</h1>
+    <p class="subtitle">Where sessions come from and how well each source converts.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <section class="card span-4">
+        <h2>Sessions by source</h2>
+        <p class="desc">Click a bar to filter by source</p>
+        <div class="chart-box"><canvas id="c-src"></canvas></div>
+      </section>
+      <section class="card span-8">
+        <h2>Sessions by month and source</h2>
+        <p class="desc">Monthly website sessions</p>
+        <div class="chart-box"><canvas id="c-trend"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Conversion rate by source and device</h2>
+        <p class="desc">Orders ÷ sessions · click a bar to filter by source and device</p>
+        <div class="chart-box"><canvas id="c-cvr"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Conversion rate by month and device</h2>
+        <p class="desc">Orders ÷ sessions</p>
+        <div class="chart-box"><canvas id="c-dev"></canvas></div>
+      </section>
+      <section class="card span-12">
+        <h2>Campaign performance</h2>
+        <p class="desc">Source, campaign, ad content and device · click a row to filter by that source and campaign</p>
+        <div id="t-camp"></div>
+      </section>
+    </div>
+  </main>
+  <script src="js/traffic.js"></script>
+</body>
+</html>

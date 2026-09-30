@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Tables · Toy Store Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/core.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Data tables</h1>
+    <p class="subtitle">Browse the raw CSV tables or the joined views. Use ▾ on any column header to filter it the way you would in Excel.</p>
+    <div class="card">
+      <div class="tbl-toolbar">
+        <select id="view">
+          <optgroup label="Joined views">
+            <option value="j-orders">Orders (enriched): order + session + products + refunds</option>
+            <option value="j-items">Order items (enriched): item + product + order + session + refund</option>
+            <option value="j-sessions">Sessions (enriched): session + landing page + funnel + order</option>
+          </optgroup>
+          <optgroup label="Raw tables">
+            <option value="orders">orders</option>
+            <option value="order_items">order_items</option>
+            <option value="order_item_refunds">order_item_refunds</option>
+            <option value="products">products</option>
+            <option value="website_sessions">website_sessions (472K rows)</option>
+            <option value="website_pageviews">website_pageviews (1.19M rows)</option>
+            <option value="maven_fuzzy_factory_data_dictionary">data dictionary</option>
+          </optgroup>
+        </select>
+        <input type="search" id="search" placeholder="Search all columns…">
+        <label class="hint"><input type="checkbox" id="use-slicers" checked> Apply slicers</label>
+        <span class="badge" id="slicer-scope"></span>
+        <div style="flex:1"></div>
+        <button class="btn" id="clear-cols">Clear column filters</button>
+        <button class="btn primary" id="export">Export CSV</button>
+      </div>
+      <div class="grid-scroll" id="grid"><div class="loading">Loading…</div></div>
+      <div class="pager">
+        <span class="info" id="info"></span>
+        <span class="spacer"></span>
+        <label class="hint">Rows per page
+          <select id="page-size"><option>50</option><option selected>100</option><option>250</option><option>500</option></select>
+        </label>
+        <button class="btn" id="first">«</button>
+        <button class="btn" id="prev">‹ Prev</button>
+        <span id="page-no" class="hint"></span>
+        <button class="btn" id="next">Next ›</button>
+        <button class="btn" id="last">»</button>
+      </div>
+    </div>
+  </main>
+  <script src="js/tables.js"></script>
+</body>
+</html>

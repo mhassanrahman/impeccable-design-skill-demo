@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "toy-store-web",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["web/serve.js", "5500"],
+      "port": 5500
+    }
+  ]
+}

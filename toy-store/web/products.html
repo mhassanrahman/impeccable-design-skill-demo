@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products · Toy Store Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/core.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Product performance</h1>
+    <p class="subtitle">Sales, margin, cross-sell and refunds for each product.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <section class="card span-8">
+        <h2>Revenue by month and product</h2>
+        <p class="desc">Click a segment to filter by product</p>
+        <div class="chart-box"><canvas id="c-rev"></canvas></div>
+      </section>
+      <section class="card span-4">
+        <h2>Units sold by product</h2>
+        <p class="desc">Click a bar to filter by product</p>
+        <div class="chart-box"><canvas id="c-units"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Refund rate by month and product</h2>
+        <p class="desc">Refunded items ÷ items sold, by order month</p>
+        <div class="chart-box"><canvas id="c-refund"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Cross-sell matrix</h2>
+        <p class="desc">Share of orders for each primary product that added a second product</p>
+        <div id="t-xsell"></div>
+      </section>
+      <section class="card span-12">
+        <h2>Product summary</h2>
+        <p class="desc">Click a row to filter by product</p>
+        <div id="t-prod"></div>
+      </section>
+    </div>
+  </main>
+  <script src="js/products.js"></script>
+</body>
+</html>

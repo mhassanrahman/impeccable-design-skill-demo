@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overview · Toy Store Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/core.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Business overview</h1>
+    <p class="subtitle">Website traffic, orders and revenue. Every figure responds to the slicers above.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <section class="card span-8">
+        <h2>Revenue and gross profit by month</h2>
+        <p class="desc">Item revenue minus cost of goods sold (USD)</p>
+        <div class="chart-box"><canvas id="c-rev"></canvas></div>
+      </section>
+      <section class="card span-4">
+        <h2>Revenue by product</h2>
+        <p class="desc">Click a bar to filter by product</p>
+        <div class="chart-box"><canvas id="c-prod"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Sessions by month and channel</h2>
+        <p class="desc">Website sessions, stacked by marketing channel</p>
+        <div class="chart-box"><canvas id="c-sess"></canvas></div>
+      </section>
+      <section class="card span-6">
+        <h2>Conversion rate by month</h2>
+        <p class="desc">Orders ÷ sessions</p>
+        <div class="chart-box"><canvas id="c-cvr"></canvas></div>
+      </section>
+      <section class="card span-12">
+        <h2>Monthly summary</h2>
+        <p class="desc">Table view of the charts above</p>
+        <div id="t-month" class="grid-scroll" style="max-height:420px"></div>
+      </section>
+    </div>
+  </main>
+  <script src="js/overview.js"></script>
+</body>
+</html>
