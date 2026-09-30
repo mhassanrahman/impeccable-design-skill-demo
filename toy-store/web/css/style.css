@@ -16,6 +16,7 @@
   --wash: #f4f6fb;
   --sticker: #ffc61a;
   --sticker-deep: #f0b400;
+  --gold-ink: #8a5f00;
   --good: #0d7a4a;
   --bad: #c2352b;
   --s1: #1e4bd2; --s2: #e8702a; --s3: #15a06e; --s4: #7a4cc4; --s5: #d9468f; --s6: #0b97b0;
@@ -201,6 +202,7 @@ main.wrap { padding-bottom: 72px; }
 .note dl > div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
 .note dt { color: var(--ink-2); }
 .note dd { margin: 0; font-weight: 700; }
+.note dt.gold { font-weight: 700; color: var(--gold-ink); letter-spacing: -0.005em; }
 .note p { color: var(--ink-2); margin: 12px 0 0; font-size: 0.8125rem; max-width: 48ch; }
 
 /* ---------- tables ---------- */
