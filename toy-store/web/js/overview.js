@@ -115,7 +115,7 @@ TS.start(function render(f) {
   const bestCvr = cvrs.indexOf(Math.max(...cvrs));
   document.getElementById('n-rev').innerHTML = `<dl>
     <div><dt>Best revenue month</dt><dd>${revenue ? `${monthName(f.from + peak)} · ${fmt.usd(M.revenue[peak])}` : '–'}</dd></div>
-    <div><dt>Best conversion month</dt><dd>${sessions ? `${monthName(f.from + bestCvr)} · ${fmt.pct(cvrs[bestCvr], 1)}` : '–'}</dd></div>
+    <div><dt class="gold">Best conversion month</dt><dd>${sessions ? `${monthName(f.from + bestCvr)} · ${fmt.pct(cvrs[bestCvr], 1)}` : '–'}</dd></div>
     <div><dt>Gross profit</dt><dd>${fmt.usd(revenue - cogs)}</dd></div>
     <div><dt>Gross margin</dt><dd>${fmt.pct(TS.div(revenue - cogs, revenue))}</dd></div>
     <div><dt>Revenue per session</dt><dd>${fmt.usd2(TS.div(revenue, sessions))}</dd></div>
