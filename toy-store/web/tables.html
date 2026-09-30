@@ -3,53 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Tables · Toy Store Analytics</title>
+  <title>Data tables · Maven Fuzzy Factory analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/core.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Data tables</h1>
-    <p class="subtitle">Browse the raw CSV tables or the joined views. Use ▾ on any column header to filter it the way you would in Excel.</p>
-    <div class="card">
-      <div class="tbl-toolbar">
-        <select id="view">
-          <optgroup label="Joined views">
-            <option value="j-orders">Orders (enriched): order + session + products + refunds</option>
-            <option value="j-items">Order items (enriched): item + product + order + session + refund</option>
-            <option value="j-sessions">Sessions (enriched): session + landing page + funnel + order</option>
-          </optgroup>
-          <optgroup label="Raw tables">
-            <option value="orders">orders</option>
-            <option value="order_items">order_items</option>
-            <option value="order_item_refunds">order_item_refunds</option>
-            <option value="products">products</option>
-            <option value="website_sessions">website_sessions (472K rows)</option>
-            <option value="website_pageviews">website_pageviews (1.19M rows)</option>
-            <option value="maven_fuzzy_factory_data_dictionary">data dictionary</option>
-          </optgroup>
-        </select>
-        <input type="search" id="search" placeholder="Search all columns…">
-        <label class="hint"><input type="checkbox" id="use-slicers" checked> Apply slicers</label>
-        <span class="badge" id="slicer-scope"></span>
-        <div style="flex:1"></div>
-        <button class="btn" id="clear-cols">Clear column filters</button>
-        <button class="btn primary" id="export">Export CSV</button>
-      </div>
-      <div class="grid-scroll" id="grid"><div class="loading">Loading…</div></div>
-      <div class="pager">
-        <span class="info" id="info"></span>
-        <span class="spacer"></span>
-        <label class="hint">Rows per page
-          <select id="page-size"><option>50</option><option selected>100</option><option>250</option><option>500</option></select>
-        </label>
-        <button class="btn" id="first">«</button>
-        <button class="btn" id="prev">‹ Prev</button>
-        <span id="page-no" class="hint"></span>
-        <button class="btn" id="next">Next ›</button>
-        <button class="btn" id="last">»</button>
+  <header class="boxfront">
+    <div class="wrap hero solo">
+      <div>
+        <h1 class="headline" id="headline">Every number on this site traces back to these rows.</h1>
+        <p class="dek" id="dek">Seven raw tables and three joined views. Filter any column the way you would in Excel, and export exactly what you see. The keys, joins and integrity checks are documented in the <a href="../docs/tables-schema.md" style="color:#fff">data model</a>.</p>
+        <dl class="contents">
+          <div><dt>website_sessions</dt><dd>472,871</dd></div>
+          <div><dt>website_pageviews</dt><dd>1,188,124</dd></div>
+          <div><dt>orders</dt><dd>32,313</dd></div>
+          <div><dt>order_items</dt><dd>40,025</dd></div>
+          <div><dt>order_item_refunds</dt><dd>1,731</dd></div>
+          <div><dt>products</dt><dd>4</dd></div>
+        </dl>
       </div>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="window">
+        <div class="toolbar">
+          <select id="view" class="field" aria-label="Table">
+            <optgroup label="Joined views">
+              <option value="j-orders">Orders, enriched with session, products and refunds</option>
+              <option value="j-items">Order items, enriched with product, order, session and refund</option>
+              <option value="j-sessions">Sessions, enriched with landing page, funnel step and order</option>
+            </optgroup>
+            <optgroup label="Raw tables">
+              <option value="orders">orders</option>
+              <option value="order_items">order_items</option>
+              <option value="order_item_refunds">order_item_refunds</option>
+              <option value="products">products</option>
+              <option value="website_sessions">website_sessions (472K rows)</option>
+              <option value="website_pageviews">website_pageviews (1.19M rows)</option>
+              <option value="maven_fuzzy_factory_data_dictionary">data dictionary</option>
+            </optgroup>
+          </select>
+          <label class="search"><span class="sr" hidden>Search</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input type="search" id="search" class="field" placeholder="Search all columns"></label>
+          <label class="check"><input type="checkbox" id="use-slicers" checked> Apply filters</label>
+          <span class="badge" id="slicer-scope"></span>
+          <span class="spacer"></span>
+          <button class="btn" id="clear-cols">Clear column filters</button>
+          <button class="btn primary" id="export"></button>
+        </div>
+        <div class="grid-scroll" id="grid"></div>
+        <div class="pager">
+          <span class="info" id="info"></span>
+          <span class="spacer"></span>
+          <label class="check">Rows per page
+            <select id="page-size" class="field" style="width:auto"><option>50</option><option selected>100</option><option>250</option><option>500</option></select>
+          </label>
+          <button class="btn" id="first" aria-label="First page"></button>
+          <button class="btn" id="prev" aria-label="Previous page"></button>
+          <span id="page-no" class="info"></span>
+          <button class="btn" id="next" aria-label="Next page"></button>
+          <button class="btn" id="last" aria-label="Last page"></button>
+        </div>
+      </div>
+    </section>
   </main>
   <script src="js/tables.js"></script>
 </body>

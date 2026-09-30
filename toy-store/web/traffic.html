@@ -3,43 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Traffic · Toy Store Analytics</title>
+  <title>Traffic · Maven Fuzzy Factory analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/core.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Traffic and marketing</h1>
-    <p class="subtitle">Where sessions come from and how well each source converts.</p>
-    <div class="kpis" id="kpis"></div>
-    <div class="grid">
-      <section class="card span-4">
-        <h2>Sessions by source</h2>
-        <p class="desc">Click a bar to filter by source</p>
-        <div class="chart-box"><canvas id="c-src"></canvas></div>
-      </section>
-      <section class="card span-8">
-        <h2>Sessions by month and source</h2>
-        <p class="desc">Monthly website sessions</p>
-        <div class="chart-box"><canvas id="c-trend"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Conversion rate by source and device</h2>
-        <p class="desc">Orders ÷ sessions · click a bar to filter by source and device</p>
-        <div class="chart-box"><canvas id="c-cvr"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Conversion rate by month and device</h2>
-        <p class="desc">Orders ÷ sessions</p>
-        <div class="chart-box"><canvas id="c-dev"></canvas></div>
-      </section>
-      <section class="card span-12">
-        <h2>Campaign performance</h2>
-        <p class="desc">Source, campaign, ad content and device · click a row to filter by that source and campaign</p>
-        <div id="t-camp"></div>
-      </section>
+  <header class="boxfront">
+    <div class="wrap hero">
+      <div>
+        <h1 class="headline" id="headline">Tracing where every visit came from…</h1>
+        <p class="dek" id="dek"></p>
+        <dl class="contents" id="kpis"></dl>
+      </div>
+      <div class="window">
+        <h2 class="window-title">Sessions by source</h2>
+        <p class="window-cap">Revenue per session in brackets · click a source to filter every page</p>
+        <div class="chart short"><canvas id="c-src" aria-label="Sessions by traffic source"></canvas></div>
+      </div>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="block-head"><h2 id="h-trend"></h2><p>Monthly sessions by traffic source</p></div>
+      <div class="window"><div class="chart tall"><canvas id="c-trend" aria-label="Sessions by month and source"></canvas></div></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-dev"></h2><p>Orders ÷ sessions, split by device</p></div>
+      <div class="row">
+        <div class="window c7">
+          <h3 class="window-title">Conversion by source and device</h3>
+          <p class="window-cap">Click a bar to filter by that source and device</p>
+          <div class="chart"><canvas id="c-cvr" aria-label="Conversion rate by source and device"></canvas></div>
+        </div>
+        <div class="window c5">
+          <h3 class="window-title">Conversion by month and device</h3>
+          <p class="window-cap">Months with under 50 sessions on a device are hidden</p>
+          <div class="chart"><canvas id="c-dev" aria-label="Conversion rate by month and device"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-camp"></h2><p>Every source, campaign, ad and device combination · click a row to filter by that source and campaign</p></div>
+      <div class="window"><div id="t-camp"></div></div>
+    </section>
   </main>
   <script src="js/traffic.js"></script>
 </body>

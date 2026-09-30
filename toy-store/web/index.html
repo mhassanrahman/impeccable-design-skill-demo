@@ -3,43 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Overview · Toy Store Analytics</title>
+  <title>Overview · Maven Fuzzy Factory analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/core.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Business overview</h1>
-    <p class="subtitle">Website traffic, orders and revenue. Every figure responds to the slicers above.</p>
-    <div class="kpis" id="kpis"></div>
-    <div class="grid">
-      <section class="card span-8">
-        <h2>Revenue and gross profit by month</h2>
-        <p class="desc">Item revenue minus cost of goods sold (USD)</p>
-        <div class="chart-box"><canvas id="c-rev"></canvas></div>
-      </section>
-      <section class="card span-4">
-        <h2>Revenue by product</h2>
-        <p class="desc">Click a bar to filter by product</p>
-        <div class="chart-box"><canvas id="c-prod"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Sessions by month and channel</h2>
-        <p class="desc">Website sessions, stacked by marketing channel</p>
-        <div class="chart-box"><canvas id="c-sess"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Conversion rate by month</h2>
-        <p class="desc">Orders ÷ sessions</p>
-        <div class="chart-box"><canvas id="c-cvr"></canvas></div>
-      </section>
-      <section class="card span-12">
-        <h2>Monthly summary</h2>
-        <p class="desc">Table view of the charts above</p>
-        <div id="t-month" class="grid-scroll" style="max-height:420px"></div>
-      </section>
+  <header class="boxfront">
+    <div class="wrap hero">
+      <div>
+        <h1 class="headline" id="headline">Reading three years of toy-store data…</h1>
+        <p class="dek" id="dek"></p>
+        <dl class="contents" id="kpis"></dl>
+      </div>
+      <div class="window">
+        <h2 class="window-title">Revenue per session by channel</h2>
+        <p class="window-cap">Share of sessions in brackets · click a channel to filter every page</p>
+        <div class="chart short"><canvas id="c-eff" aria-label="Revenue per session by marketing channel"></canvas></div>
+      </div>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="block-head"><h2 id="h-rev"></h2><p>Monthly revenue and gross profit (revenue minus cost of goods sold), USD</p></div>
+      <div class="row">
+        <div class="window c8"><div class="chart tall"><canvas id="c-rev" aria-label="Revenue and gross profit by month"></canvas></div></div>
+        <div class="c4 note" id="n-rev"></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-mix"></h2><p>Where visits came from, and how often a visit became an order</p></div>
+      <div class="row">
+        <div class="window c7">
+          <h3 class="window-title">Sessions by month and channel</h3>
+          <p class="window-cap">Stacked monthly website sessions</p>
+          <div class="chart"><canvas id="c-sess" aria-label="Sessions by month and channel"></canvas></div>
+        </div>
+        <div class="window c5">
+          <h3 class="window-title">Conversion rate by month</h3>
+          <p class="window-cap">Orders ÷ sessions</p>
+          <div class="chart"><canvas id="c-cvr" aria-label="Conversion rate by month"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2>Month by month</h2><p>The table behind the charts above, newest month first</p></div>
+      <div class="window"><div id="t-month" class="grid-scroll scroll-cue" style="max-height:440px;border:0"></div></div>
+    </section>
   </main>
   <script src="js/overview.js"></script>
 </body>

@@ -198,13 +198,13 @@
     page = Math.min(page, pages - 1);
     const start = page * size, slice = view.slice(start, start + size);
     const head = ds.cols.map((c, ci) => {
-      const s = sort && sort.col === ci ? `<span class="sort">${sort.dir > 0 ? '▲' : '▼'}</span>` : '';
+      const s = sort && sort.col === ci ? `<span class="sort">${TS.icon(sort.dir > 0 ? 'up' : 'down')}</span>` : '';
       const on = colFilters[ci] ? ' on' : '';
-      return `<th class="${c.num ? 'num' : ''}" data-c="${ci}"><div class="th-in"><span>${TS.esc(c.name)}</span>${s}<button class="fbtn${on}" data-f="${ci}" title="Filter / sort">▾</button></div></th>`;
+      return `<th class="${c.num ? 'num' : ''}" data-c="${ci}"><div class="th-in"><span>${TS.esc(c.name)}</span>${s}<button class="fbtn${on}" data-f="${ci}" title="Filter or sort ${TS.esc(c.name)}" aria-label="Filter or sort ${TS.esc(c.name)}">${TS.icon('filter')}</button></div></th>`;
     }).join('');
     const body = slice.map(i => '<tr>' + ds.cols.map((c, ci) => `<td class="${c.num ? 'num' : ''}">${TS.esc(cellStr(ci, i))}</td>`).join('') + '</tr>').join('');
     $('grid').innerHTML = `<table class="data xl"><thead><tr>${head}</tr></thead><tbody>${body ||
-      `<tr><td colspan="${ds.cols.length}" class="hint" style="padding:24px">No rows match the current filters.</td></tr>`}</tbody></table>`;
+      `<tr><td colspan="${ds.cols.length}" class="empty"><b>No rows match</b>Loosen a column filter, clear the search, or untick Apply filters.</td></tr>`}</tbody></table>`;
     $('grid').querySelectorAll('th').forEach(th => (th.onclick = e => {
       if (e.target.closest('.fbtn')) return;
       const c = +th.dataset.c;
@@ -217,7 +217,7 @@
     $('prev').disabled = $('first').disabled = page === 0;
     $('next').disabled = $('last').disabled = page >= pages - 1;
     $('clear-cols').disabled = !Object.keys(colFilters).length && !sort;
-    $('slicer-scope').textContent = 'Slicers: ' + (ds.scope || 'Not applicable');
+    $('slicer-scope').textContent = 'Filters applied: ' + (ds.scope || 'none, not applicable to this table');
   }
 
   // ---------- Excel-style column filter popover ----------
@@ -238,20 +238,20 @@
 
     pop = document.createElement('div');
     pop.className = 'popover th-pop';
-    pop.style.width = '280px';
+    pop.style.width = '300px';
     pop.innerHTML = `
-      <div class="row"><button class="btn" data-s="1">Sort A → Z</button><button class="btn" data-s="-1">Sort Z → A</button></div><hr>
-      <div class="row"><input type="text" id="cf-text" placeholder="Contains…" value="${TS.esc(cf.text || '')}"></div>
-      ${col.num ? `<div class="row"><input type="number" id="cf-min" placeholder="Min" value="${cf.min ?? ''}"><input type="number" id="cf-max" placeholder="Max" value="${cf.max ?? ''}"></div>` : ''}
-      ${listable ? `<hr><div class="row"><input type="text" id="cf-find" placeholder="Search values…"></div>
-        <label class="opt"><input type="checkbox" id="cf-all"> <b>(Select all)</b></label>
-        <div class="opts" id="cf-list">${values.map((v, k) => `<label class="opt" data-k="${k}"><input type="checkbox" data-k="${k}" ${!cf.values || cf.values.has(v) ? 'checked' : ''}> <span>${TS.esc(col.num ? fmtNum(c, v) : v === '' ? '(blank)' : v)}</span><span class="n">${TS.fmt.int(counts.get(v))}</span></label>`).join('')}</div>`
-      : `<p class="hint">${TS.fmt.int(rows.length)} rows, more than 1,000 distinct values. Use Contains${col.num ? ' or Min/Max' : ''}.</p>`}
-      <div class="actions"><button class="btn" id="cf-clear">Clear</button><button class="btn primary" id="cf-ok">OK</button></div>`;
+      <div class="pop-row"><button class="btn" data-s="1">${TS.icon('up')} Sort ascending</button><button class="btn" data-s="-1">${TS.icon('down')} Descending</button></div><hr class="pop-sep">
+      <div class="pop-row"><input type="text" class="field" id="cf-text" placeholder="Contains…" value="${TS.esc(cf.text || '')}"></div>
+      ${col.num ? `<div class="pop-row"><input type="number" class="field" id="cf-min" placeholder="Min" value="${cf.min ?? ''}"><input type="number" class="field" id="cf-max" placeholder="Max" value="${cf.max ?? ''}"></div>` : ''}
+      ${listable ? `<hr class="pop-sep"><div class="pop-row"><input type="text" class="field" id="cf-find" placeholder="Search values…"></div>
+        <label class="opt"><input type="checkbox" id="cf-all"><b>Select all</b><span class="n">rows</span></label>
+        <div class="opts" id="cf-list">${values.map((v, k) => `<label class="opt" data-k="${k}"><input type="checkbox" data-k="${k}" ${!cf.values || cf.values.has(v) ? 'checked' : ''}><span>${TS.esc(col.num ? fmtNum(c, v) : v === '' ? '(blank)' : v)}</span><span class="n">${TS.fmt.int(counts.get(v))}</span></label>`).join('')}</div>`
+      : `<p class="pop-note">${TS.fmt.int(rows.length)} rows with more than 1,000 distinct values. Filter with Contains${col.num ? ' or Min / Max' : ''}.</p>`}
+      <div class="pop-actions"><button class="btn" id="cf-clear">Clear</button><button class="btn primary" id="cf-ok">Apply</button></div>`;
     document.body.appendChild(pop);
     const r = btn.getBoundingClientRect();
     pop.style.top = Math.min(r.bottom + 4, window.innerHeight - pop.offsetHeight - 8) + 'px';
-    pop.style.left = Math.max(8, Math.min(r.right - 280, window.innerWidth - 288)) + 'px';
+    pop.style.left = Math.max(8, Math.min(r.right - 300, window.innerWidth - 308)) + 'px';
 
     pop.querySelectorAll('[data-s]').forEach(b => (b.onclick = () => { sort = { col: c, dir: +b.dataset.s }; closePop(); refresh(); }));
     const boxes = [...pop.querySelectorAll('#cf-list input')];
@@ -309,14 +309,15 @@
     const token = ++loadToken;
     closePop();
     colFilters = {}; sort = null; page = 0;
-    $('grid').innerHTML = `<div class="loading">Loading ${TS.esc(key)}… large tables can take a few seconds.</div>`;
+    $('grid').innerHTML = `<div class="skeleton" aria-label="Loading ${TS.esc(key)}">${'<i></i>'.repeat(10)}</div>`;
+    $('info').textContent = /pageviews|sessions/.test(key) ? 'Loading a large table, this can take a few seconds…' : 'Loading…';
     try {
       const d = await getDataset(key);
       if (token !== loadToken) return;
       ds = d;
       refresh();
     } catch (e) {
-      $('grid').innerHTML = `<div class="loading">${TS.esc(e.message)}</div>`;
+      $('grid').innerHTML = `<div class="empty"><b>This table could not be loaded</b>${TS.esc(e.message)}</div>`;
     }
     try { localStorage.setItem('toy-store-table', key); } catch { /* ignore */ }
   }
@@ -329,6 +330,8 @@
     selectView($('view').value);
   });
 
+  $('export').innerHTML = `${TS.icon('download')} Export CSV`;
+  [['first', 'first'], ['prev', 'prev'], ['next', 'next'], ['last', 'last']].forEach(([id, ic]) => ($(id).innerHTML = TS.icon(ic)));
   $('view').onchange = () => selectView($('view').value);
   let t;
   $('search').oninput = () => { clearTimeout(t); t = setTimeout(() => refresh(), 250); };

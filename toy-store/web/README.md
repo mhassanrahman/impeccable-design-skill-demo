@@ -20,7 +20,8 @@ Then open <http://localhost:5500/web/>.
 - Re-run the build step only when the CSVs change. It takes about 2 seconds and writes to `web/data/`, which git ignores.
 - The server has no dependencies. It serves the whole `toy-store/` folder so the **Data Tables** page can read the raw CSVs from `../data`.
   Any static server rooted at `toy-store/` works too, for example `python -m http.server 5500`.
-- Charts use Chart.js from cdnjs, so the first load needs an internet connection.
+- Charts use Chart.js from cdnjs and the Archivo typeface from Google Fonts, so the first load needs an internet connection.
+- The visual system (tokens, type, colour rules) is recorded in [`../DESIGN.md`](../DESIGN.md). Product context is in [`../PRODUCT.md`](../PRODUCT.md).
 
 ## Pages
 
@@ -40,7 +41,7 @@ The slicer bar filters every page: **Date** (month range), **Product**, **Source
 - Click a bar or table row to cross-filter by it. Click it again to clear. Ctrl/Shift+click adds to the selection.
 - The Product slicer keeps orders that *contain* the product. For session metrics it keeps sessions that *viewed that product's page*.
 - The Funnel page also has a page-level landing page filter: click a landing page row or bar.
-- On Data Tables, the badge shows which slicers apply to the current table. Turn off **Apply slicers** to see every row.
+- On Data Tables, the badge shows which slicers apply to the current table. Untick **Apply filters** to see every row.
   Raw `website_pageviews` supports the date slicer only, and `products` and the data dictionary are never sliced.
 
 ## Files
@@ -48,7 +49,7 @@ The slicer bar filters every page: **Date** (month range), **Product**, **Source
 ```
 web/
 ├── index.html, products.html, traffic.html, funnel.html, tables.html
-├── css/style.css            # light/dark theme tokens + layout
+├── css/style.css            # design tokens + layout (light only)
 ├── js/core.js               # data loading, slicers, filter predicates, chart helpers
 ├── js/<page>.js             # one script per page
 ├── scripts/build-data.js    # CSV → web/data/*.json (+ sessions_enriched.csv)

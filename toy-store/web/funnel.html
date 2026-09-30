@@ -3,53 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Website Funnel · Toy Store Analytics</title>
+  <title>Website funnel · Maven Fuzzy Factory analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/core.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Website conversion funnel</h1>
-    <p class="subtitle">How far sessions get, from the landing page to a placed order, plus the results of the landing page and billing page A/B tests.</p>
-    <div class="kpis" id="kpis"></div>
-    <div class="grid">
-      <section class="card span-7">
-        <h2>Conversion funnel</h2>
-        <p class="desc" id="funnel-desc">Sessions reaching each step · % of all sessions · click-through from the previous step</p>
+  <header class="boxfront">
+    <div class="wrap hero">
+      <div>
+        <h1 class="headline" id="headline">Following visitors from landing page to order…</h1>
+        <p class="dek" id="dek"></p>
+        <dl class="contents" id="kpis"></dl>
+      </div>
+      <div class="window">
+        <h2 class="window-title">Conversion funnel</h2>
+        <p class="window-cap" id="funnel-cap">Sessions reaching each step · the biggest drop is marked in orange</p>
         <div class="funnel" id="funnel"></div>
-      </section>
-      <section class="card span-5">
-        <h2>Landing page performance</h2>
-        <p class="desc">Click a row to filter this page's funnel by landing page</p>
-        <div id="t-land"></div>
-      </section>
-      <section class="card span-6">
-        <h2>Bounce rate by landing page</h2>
-        <p class="desc">Sessions that left after one page</p>
-        <div class="chart-box"><canvas id="c-bounce"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Conversion rate by landing page</h2>
-        <p class="desc">Orders ÷ sessions</p>
-        <div class="chart-box"><canvas id="c-lcvr"></canvas></div>
-      </section>
-      <section class="card span-12">
-        <h2>Landing page traffic by month</h2>
-        <p class="desc">Shows when each landing page test was live</p>
-        <div class="chart-box"><canvas id="c-ltrend"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Billing page A/B test</h2>
-        <p class="desc">Sessions that reached a billing page, and how many of them ordered. For a fair test, set the Date slicer to months when both pages were live (Sep–Dec 2012).</p>
-        <div id="t-bill"></div>
-      </section>
-      <section class="card span-6">
-        <h2>Product page click-through</h2>
-        <p class="desc">Sessions that viewed a product page, and how many reached the cart or ordered</p>
-        <div id="t-pp"></div>
-      </section>
+      </div>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="block-head"><h2 id="h-land"></h2><p>Click a landing page to focus this page's funnel on it · Ctrl+click to compare several</p></div>
+      <div class="row">
+        <div class="window c5"><div id="t-land"></div></div>
+        <div class="window c7">
+          <h3 class="window-title">Conversion rate by landing page</h3>
+          <p class="window-cap">Orders ÷ sessions that started on the page</p>
+          <div class="chart short"><canvas id="c-lcvr" aria-label="Conversion rate by landing page"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-bounce"></h2><p>Share of sessions that left after the landing page</p></div>
+      <div class="row">
+        <div class="window c5">
+          <div class="chart short"><canvas id="c-bounce" aria-label="Bounce rate by landing page"></canvas></div>
+        </div>
+        <div class="window c7">
+          <h3 class="window-title">Landing page traffic by month</h3>
+          <p class="window-cap">Each colour is a landing page test; the overlaps are the A/B windows</p>
+          <div class="chart short"><canvas id="c-ltrend" aria-label="Landing page sessions by month"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-bill"></h2><p id="p-bill">Sessions that reached a billing page, and how many of them ordered</p></div>
+      <div class="row">
+        <div class="window c6">
+          <h3 class="window-title">Billing page A/B test</h3>
+          <p class="window-cap">Fair comparison: set the Date slicer to Sep – Dec 2012, when both pages ran</p>
+          <div id="t-bill"></div>
+        </div>
+        <div class="window c6">
+          <h3 class="window-title" id="h-pp">Product page click-through</h3>
+          <p class="window-cap">Sessions that viewed a product page · click a row to filter by product</p>
+          <div id="t-pp"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <script src="js/funnel.js"></script>
 </body>

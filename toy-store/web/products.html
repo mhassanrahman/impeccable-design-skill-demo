@@ -3,43 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Products · Toy Store Analytics</title>
+  <title>Products · Maven Fuzzy Factory analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="js/core.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Product performance</h1>
-    <p class="subtitle">Sales, margin, cross-sell and refunds for each product.</p>
-    <div class="kpis" id="kpis"></div>
-    <div class="grid">
-      <section class="card span-8">
-        <h2>Revenue by month and product</h2>
-        <p class="desc">Click a segment to filter by product</p>
-        <div class="chart-box"><canvas id="c-rev"></canvas></div>
-      </section>
-      <section class="card span-4">
-        <h2>Units sold by product</h2>
-        <p class="desc">Click a bar to filter by product</p>
-        <div class="chart-box"><canvas id="c-units"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Refund rate by month and product</h2>
-        <p class="desc">Refunded items ÷ items sold, by order month</p>
-        <div class="chart-box"><canvas id="c-refund"></canvas></div>
-      </section>
-      <section class="card span-6">
-        <h2>Cross-sell matrix</h2>
-        <p class="desc">Share of orders for each primary product that added a second product</p>
-        <div id="t-xsell"></div>
-      </section>
-      <section class="card span-12">
-        <h2>Product summary</h2>
-        <p class="desc">Click a row to filter by product</p>
-        <div id="t-prod"></div>
-      </section>
+  <header class="boxfront">
+    <div class="wrap hero">
+      <div>
+        <h1 class="headline" id="headline">Counting every bear that left the shelf…</h1>
+        <p class="dek" id="dek"></p>
+        <dl class="contents" id="kpis"></dl>
+      </div>
+      <div class="window">
+        <h2 class="window-title">Revenue by product</h2>
+        <p class="window-cap">Gross margin in brackets · click a product to filter every page</p>
+        <div class="chart short"><canvas id="c-prod" aria-label="Revenue by product"></canvas></div>
+      </div>
     </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="block-head"><h2 id="h-mix"></h2><p>Monthly item revenue, stacked by product · click a segment to filter</p></div>
+      <div class="row">
+        <div class="window c8"><div class="chart tall"><canvas id="c-rev" aria-label="Revenue by month and product"></canvas></div></div>
+        <div class="c4 note" id="n-launch"></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-xsell"></h2><p>Share of orders for each primary product that added a second product</p></div>
+      <div class="window"><div id="t-xsell"></div></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2 id="h-refund"></h2><p>Refunded items ÷ items sold, by order month · months with under 20 sales are hidden</p></div>
+      <div class="window"><div class="chart"><canvas id="c-refund" aria-label="Refund rate by month and product"></canvas></div></div>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2>Product scorecard</h2><p>Click a row to filter by product</p></div>
+      <div class="window"><div id="t-prod"></div></div>
+    </section>
   </main>
   <script src="js/products.js"></script>
 </body>
