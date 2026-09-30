@@ -1,0 +1,6 @@
+# Impeccable: keep design.json and surfaces/ (durable design context); ignore session artifacts
+.impeccable/review/
+.impeccable/questions/
+.impeccable/build/
+.impeccable/mocks/
+.impeccable/config.local.json
