@@ -1,5 +1,5 @@
-// Minimal static server (no dependencies). Serves toy-store/ so the app can also read the raw CSVs in ../data.
-// Usage (from toy-store/):  node web/serve.js [port]   →  http://localhost:5500/web/
+// Minimal static server (no dependencies). Serves the repo root so the app can also read the raw CSVs in ../data.
+// Usage (from the repo root):  node web/serve.js [port]   →  http://localhost:5500/web/
 const http = require('http');
 const fs = require('fs');
 const path = require('path');

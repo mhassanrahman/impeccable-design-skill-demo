@@ -65,7 +65,7 @@
   };
   async function loadRaw(name) {
     const res = await fetch('../data/' + name + '.csv');
-    if (!res.ok) throw new Error(`Could not read data/${name}.csv (${res.status}). Serve the toy-store folder, not only web/.`);
+    if (!res.ok) throw new Error(`Could not read data/${name}.csv (${res.status}). Serve the repo root, not only web/.`);
     const d = parseCsv(await res.text());
     const col = n => d.data[d.cols.findIndex(c => c.name === n)];
     d.scope = RAW_SCOPE[name];

@@ -343,7 +343,7 @@
       const h = document.getElementById('headline');
       if (h) h.textContent = 'The data has not been built yet';
       const d = document.getElementById('dek');
-      if (d) d.innerHTML = `Run <b>node web/scripts/build-data.js</b>, then <b>node web/serve.js</b>, from the toy-store folder. (${TS.esc(e.message)})`;
+      if (d) d.innerHTML = `Run <b>node web/scripts/build-data.js</b>, then <b>node web/serve.js</b>, from the repo root. (${TS.esc(e.message)})`;
       return;
     }
     renderSlicers();

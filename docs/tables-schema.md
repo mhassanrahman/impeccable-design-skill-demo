@@ -1,6 +1,6 @@
 # Toy Store — Tables & Relationships
 
-Source: Maven Analytics "Maven Fuzzy Factory" dataset (`toy-store/data/`).
+Source: Maven Analytics "Maven Fuzzy Factory" dataset (`data/`).
 An online toy retailer's website traffic and e‑commerce data, **2012‑03‑19 → 2015‑03‑19**
 (refunds run to 2015‑04‑01).
 

@@ -5,7 +5,7 @@ Table relationships are documented in [`../docs/tables-schema.md`](../docs/table
 
 ## Run locally
 
-From the `toy-store/` folder:
+From the repo root:
 
 ```bash
 node web/scripts/build-data.js
@@ -18,8 +18,8 @@ node web/serve.js
 Then open <http://localhost:5500/web/>.
 
 - Re-run the build step only when the CSVs change. It takes about 2 seconds and writes to `web/data/`, which git ignores.
-- The server has no dependencies. It serves the whole `toy-store/` folder so the **Data Tables** page can read the raw CSVs from `../data`.
-  Any static server rooted at `toy-store/` works too, for example `python -m http.server 5500`.
+- The server has no dependencies. It serves the whole repo root so the **Data Tables** page can read the raw CSVs from `../data`.
+  Any static server rooted at the repo root works too, for example `python -m http.server 5500`.
 - Charts use Chart.js from cdnjs and the Archivo typeface from Google Fonts, so the first load needs an internet connection.
 - The visual system (tokens, type, colour rules) is recorded in [`../DESIGN.md`](../DESIGN.md). Product context is in [`../PRODUCT.md`](../PRODUCT.md).
 

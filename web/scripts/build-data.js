@@ -1,5 +1,5 @@
 // Builds compact JSON (and one enriched CSV) for the web app from ../../data/*.csv.
-// Usage (from toy-store/):  node web/scripts/build-data.js
+// Usage (from the repo root):  node web/scripts/build-data.js
 const fs = require('fs');
 const path = require('path');
 
